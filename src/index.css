@@ -1,0 +1,95 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  body {
+    @apply text-white font-sans;
+    background: #0d1b2a;
+    background-attachment: fixed;
+  }
+  
+  * {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.5s;
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply bg-white/[0.05] backdrop-blur-xl border border-cyan-500/[0.2] rounded-2xl;
+  }
+
+  .glass-card {
+    @apply bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-xl border border-cyan-500/[0.2] rounded-3xl shadow-2xl;
+  }
+
+  .neon-glow-button {
+    @apply relative px-8 py-3 bg-cyan-500 text-primary-dark font-semibold rounded-lg shadow-lg transition-all duration-500 cursor-pointer;
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+  }
+
+  .neon-glow-button:hover {
+    box-shadow: 0 0 40px rgba(0, 217, 255, 0.8), inset 0 0 20px rgba(0, 217, 255, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .premium-badge {
+    @apply px-4 py-2 bg-white/[0.1] border border-cyan-500 rounded-full text-xs font-medium text-cyan-400 inline-block;
+    box-shadow: 0 0 15px rgba(0, 217, 255, 0.3);
+  }
+
+  .neon-border {
+    @apply border-cyan-500;
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
+  }
+
+  .form-input-luxury {
+    @apply w-full px-4 py-3 bg-white/[0.05] border border-cyan-500/[0.3] rounded-lg focus:border-cyan-400 focus:outline-none text-white placeholder:text-gray-400 backdrop-blur-sm transition-colors duration-300;
+  }
+
+  .form-input-luxury:focus {
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
+  }
+
+  .status-badge {
+    @apply px-3 py-1 rounded-full text-xs font-semibold inline-flex items-center gap-1;
+  }
+
+  .status-pending {
+    @apply bg-yellow-500/20 text-yellow-300 border border-yellow-500/50;
+  }
+
+  .status-approved {
+    @apply bg-green-500/20 text-green-300 border border-green-500/50;
+  }
+
+  .status-rejected {
+    @apply bg-red-500/20 text-red-300 border border-red-500/50;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 217, 255, 0.3);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 217, 255, 0.5);
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(0, 217, 255, 0.3);
+  color: white;
+}

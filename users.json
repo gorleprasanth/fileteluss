@@ -1,0 +1,24 @@
+[
+  {
+    "id": "admin-001",
+    "name": "Admin",
+    "email": "admin@example.com",
+    "password": "admin123",
+    "role": "admin",
+    "status": "approved",
+    "registeredAt": "2024-01-01T00:00:00.000Z",
+    "features": ["home","videos","portfolio","files","notes"],
+    "accessExpiry": null
+  },
+  {
+    "id": "user-1001",
+    "name": "MobileUser",
+    "email": "mobile@example.com",
+    "password": "mobile123",
+    "role": "user",
+    "status": "pending",
+    "registeredAt": "2026-02-12T00:00:00.000Z",
+    "features": [],
+    "accessExpiry": null
+  }
+]
