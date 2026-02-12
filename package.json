@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://gorleprasanth.github.io/telus",
+  "homepage": "https://gorleprasanth.github.io/fileteluss",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
