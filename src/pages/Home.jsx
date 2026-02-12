@@ -11,7 +11,11 @@ export default function Home({ session }) {
   const [typedEmail, setTypedEmail] = useState('')
   const [showCursor, setShowCursor] = useState(true)
 
-  const welcomeText = session.role === 'admin' ? 'Welcome back,' : 'Welcome to my world,'
+  const welcomeText =
+  session?.role === 'admin'
+    ? 'Welcome back,'
+    : 'Welcome to my world,'
+
 
   useEffect(() => {
     loadFiles()

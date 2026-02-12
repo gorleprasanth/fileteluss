@@ -77,8 +77,8 @@ export default function Navbar({ session, setSession }) {
               </motion.button>
             </Link>
 
-            {/* Telus Dropdown - Videos Only */}
-            {(session.role === 'admin' || accessibleFeatures.includes('videos')) && (
+            {/* Telus Dropdown - Videos and Portfolio */}
+            {(session.role === 'admin' || accessibleFeatures.includes('videos') || accessibleFeatures.includes('portfolio')) && (
               <div className="relative">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -112,32 +112,32 @@ export default function Navbar({ session, setSession }) {
                         background: 'rgba(13, 27, 42, 0.95)'
                       }}
                     >
-                      <Link to="/videos">
-                        <motion.div
-                          whileHover={{ x: 4, backgroundColor: 'rgba(0, 217, 255, 0.1)' }}
-                          className="px-4 py-3 text-gray-300 hover:text-cyan-400 cursor-pointer transition-colors"
-                          onClick={() => setDropdownOpen(false)}
-                        >
-                          Videos
-                        </motion.div>
-                      </Link>
+                      {(session.role === 'admin' || accessibleFeatures.includes('videos')) && (
+                        <Link to="/videos">
+                          <motion.div
+                            whileHover={{ x: 4, backgroundColor: 'rgba(0, 217, 255, 0.1)' }}
+                            className="px-4 py-3 text-gray-300 hover:text-cyan-400 cursor-pointer transition-colors"
+                            onClick={() => setDropdownOpen(false)}
+                          >
+                            Videos
+                          </motion.div>
+                        </Link>
+                      )}
+                      {(session.role === 'admin' || accessibleFeatures.includes('portfolio')) && (
+                        <Link to="/portfolio">
+                          <motion.div
+                            whileHover={{ x: 4, backgroundColor: 'rgba(0, 217, 255, 0.1)' }}
+                            className="px-4 py-3 text-gray-300 hover:text-cyan-400 cursor-pointer transition-colors"
+                            onClick={() => setDropdownOpen(false)}
+                          >
+                            Portfolio
+                          </motion.div>
+                        </Link>
+                      )}
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
-            )}
-
-            {/* Portfolio - Separate Link */}
-            {(session.role === 'admin' || accessibleFeatures.includes('portfolio')) && (
-              <Link to="/portfolio">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-4 py-2 text-gray-300 hover:text-cyan-400 transition-colors duration-300 font-medium"
-                >
-                  Portfolio
-                </motion.button>
-              </Link>
             )}
 
             {/* Admin Link */}

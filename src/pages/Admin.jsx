@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { getNonAdminUsers, updateUserStatus, updateUserFeatures, updateUserRole, updateUserAccessExpiry } from '../utils/auth'
+import { db } from '../firebase'
+import { collection, onSnapshot } from 'firebase/firestore'
+import { updateUserStatus, updateUserFeatures, updateUserRole, updateUserAccessExpiry } from '../utils/auth'
 
 export default function Admin() {
   const [users, setUsers] = useState([])
@@ -8,15 +10,16 @@ export default function Admin() {
   const [expandedUser, setExpandedUser] = useState(null)
 
   useEffect(() => {
-    loadUsers()
-  }, [])
-
-  const loadUsers = async () => {
     setLoading(true)
-    const nonAdminUsers = await getNonAdminUsers()
-    setUsers(nonAdminUsers)
-    setLoading(false)
-  }
+    // Real-time Firestore listener for users collection
+    const unsub = onSnapshot(collection(db, 'users'), (snap) => {
+      const all = snap.docs.map(d => d.data())
+      const nonAdminUsers = all.filter(u => u.role !== 'admin')
+      setUsers(nonAdminUsers)
+      setLoading(false)
+    })
+    return () => unsub()
+  }, [])
 
   const handleApprove = async (email) => {
     setLoading(true)
